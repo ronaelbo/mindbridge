@@ -1,27 +1,99 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-  <meta charset="utf-8" />
-  <title>المهارات - MindBridge</title>
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <header>MindBridge</header>
-  <nav>
-    <a href="index.html">الرئيسية</a>
-    <a href="community.html">المجتمع</a>
-    <a href="assistant.html">المساعد الذكي</a>
-    <a href="experts.html">الأخصائيون</a>
-  </nav>
+:root{
+  --green:#2a8a4a;
+  --light:#f5fbf5;
+  --muted:#7b7b7b;
+  --card:#ffffff;
+  --round:14px;
+  --shadow: 0 6px 18px rgba(16,24,40,0.06);
+  --pad:16px;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: "Arial", sans-serif;
+  background:var(--light);
+  color:#111;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  direction:rtl;
+}
 
-  <main>
-    <h2>المهارات</h2>
-    <p>هنا قائمة المهارات اللي يقدر يعلن عنها الأخصائيون (توحد، إدارة غضب، استشارات سريعة...)</p>
-    <ul>
-      <li>مهارة 1</li>
-      <li>مهارة 2</li>
-      <li>مهارة 3</li>
-    </ul>
-  </main>
-</body>
-</html>
+/* header */
+.site-header{
+  position:fixed;
+  top:0;
+  left:0; right:0;
+  height:64px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 var(--pad);
+  background:linear-gradient(90deg,var(--green), #2f9c55);
+  color:#fff;
+  z-index:30;
+}
+
+.brand{display:flex;align-items:center;gap:12px}
+.logo{font-weight:700}
+.avatar{
+  width:36px;height:36px;border-radius:999px;background:#fff;color:var(--green);
+  display:flex;align-items:center;justify-content:center;font-weight:700;
+}
+.menu-btn{background:transparent;border:0;color:#fff;font-size:20px}
+
+/* language button */
+.lang-btn{
+  background:rgba(255,255,255,0.15);
+  border:0;color:#fff;padding:6px 10px;border-radius:10px;cursor:pointer;
+}
+
+/* main container */
+.container{max-width:960px;margin:90px auto 120px;padding:0 18px}
+
+/* badge */
+.badge{
+  background:rgba(42,138,74,0.08);
+  color:var(--green);padding:8px 12px;border-radius:999px;display:inline-block;margin-bottom:18px;
+}
+
+/* hero */
+.hero{ text-align:center;padding:20px 10px}
+.hero h1{font-size:34px;margin:6px 0 8px;line-height:1.05}
+.hero p{color:var(--muted);margin-bottom:20px}
+
+/* buttons */
+.btn{display:inline-block;padding:14px 28px;border-radius:999px;border:0;font-weight:600;cursor:pointer}
+.btn-primary{background:var(--green);color:#fff;box-shadow: var(--shadow)}
+.btn-secondary{background:#fff;color:var(--muted);margin-left:12px;border:1px solid #e6e6e6}
+
+/* cards */
+.features{margin-top:16px}
+.features h2{text-align:center;font-size:26px;margin-bottom:6px}
+.cards{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:18px}
+.card{
+  background:var(--card);
+  min-width:220px;max-width:300px;
+  border-radius:14px;padding:16px;box-shadow:var(--shadow);
+  text-align:right;
+}
+.card-icon{font-size:26px;margin-bottom:8px}
+.muted{color:var(--muted)}
+
+/* bottom nav */
+.bottom-nav{
+  position:fixed;bottom:12px;left:50%;transform:translateX(-50%);
+  background:transparent;display:flex;gap:6px;padding:8px 12px;z-index:40;
+}
+.nav-item{
+  background:rgba(255,255,255,0.95);padding:10px 14px;border-radius:12px;text-decoration:none;color:#333;box-shadow:var(--shadow);
+  font-weight:600;font-size:14px;
+}
+.nav-item.active{background:var(--green);color:#fff;}
+
+/* responsiveness */
+@media (max-width:600px){
+  .hero h1{font-size:28px}
+  .cards{flex-direction:column;align-items:center}
+  .container{margin:80px 12px 120px}
+}
