@@ -1,27 +1,71 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>MindBridge</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <header class="site-header">
+    <div class="header-left">
+      <button class="icon-btn" aria-label="notifications">🔔</button>
+      <button class="icon-btn" aria-label="lang">ع</button>
+    </div>
+    <div class="brand">MindBridge</div>
+    <div class="header-right">
+      <div class="avatar">MB</div>
+      <button class="menu-btn" aria-label="menu">≡</button>
+    </div>
+  </header>
 
-<header>MindBridge</header>
+  <main>
+    <section class="hero">
+      <div class="hero-badge">منصة متكاملة لدعم صحتك النفسية ونموك الشخصي</div>
+      <h1>رحلتك نحو صحة نفسية أفضل تبدأ هنا</h1>
+      <p class="hero-sub">منصة عربية ذكية للدعم النفسي وتنمية المهارات الشخصية</p>
 
-<div class="card">
-  <h2>رحلتك نحو صحة نفسية أفضل تبدأ هنا</h2>
-  <p>منصة متكاملة: جلسات، مجتمع مجهول، مساعد ذكي، نقاط، مكافآت، ودفع بالعملات.</p>
-  <button onclick="location.href='experts.html'">ابحث عن مختص</button>
-  <button onclick="location.href='assistant.html'">المساعد الذكي</button>
-</div>
+      <div class="hero-cta">
+        <a class="btn primary" href="#">ابدأ الآن</a>
+        <a class="btn ghost" href="#">تعرف على الأخصائيين</a>
+      </div>
+    </section>
 
-<nav>
-  <a href="index.html">الرئيسية</a>
-  <a href="skills.html">المهارات</a>
-  <a href="community.html">المجتمع</a>
-  <a href="profile.html">حسابي</a>
-</nav>
+    <section class="features">
+      <h2 class="section-title">ما يميز MindBridge</h2>
 
+      <div class="cards">
+        <article class="card">
+          <div class="card-icon">📅</div>
+          <h3>جلسات مع أخصائيين</h3>
+          <p>حجوزات سريعة وسهلة مع أخصائيين مختصين.</p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">🧠</div>
+          <h3>المساعد الذكي</h3>
+          <p>محادثات ذكية تساعدك على تنظيم مشاعرك.</p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">📈</div>
+          <h3>المهارات</h3>
+          <p>دورات قصيرة لتنمية مهاراتك الشخصية.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <nav class="bottom-nav" role="navigation" aria-label="Bottom navigation">
+    <a class="nav-item active" href="#"><span>الرئيسية</span></a>
+    <a class="nav-item" href="#"><span>جلساتي</span></a>
+    <a class="nav-item" href="#"><span>المساعد</span></a>
+    <a class="nav-item" href="#"><span>المجتمع</span></a>
+    <a class="nav-item" href="#"><span>حسابي</span></a>
+  </nav>
+
+  <footer class="site-footer">
+    <p>© 2025 MindBridge</p>
+  </footer>
 </body>
 </html>
