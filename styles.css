@@ -39,3 +39,34 @@ nav a {
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   text-align: center;
 }
+/* ===== language dropdown ===== */
+.lang-menu { position: relative; display: inline-block; }
+.lang-btn {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 15px;
+  cursor: pointer;
+  padding: 6px 8px;
+}
+.lang-list {
+  list-style: none;
+  padding: 6px 0;
+  margin: 0;
+  position: absolute;
+  top: 38px;
+  right: 0;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  display: none;
+  z-index: 90;
+  min-width: 130px;
+}
+.lang-list li {
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  color: #222;
+}
+.lang-list li:hover { background: #f3f3f3; }
