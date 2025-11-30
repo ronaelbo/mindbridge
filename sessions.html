@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>جلساتي - MindBridge</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="topbar">
+      <button class="icon-btn">🔔</button>
+      <div class="logo">MindBridge <span class="logo-badge">MB</span></div>
+      <button class="icon-btn" id="langBtn">ع/En</button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main class="container">
+    <section class="hero">
+      <p class="badge">منصة متكاملة لدعم صحتك النفسية</p>
+      <h1>جلساتي</h1>
+      <p class="lead">هنا هتلاقي مواعيدك المحجوزة وكل الجلسات الخاصة بيك</p>
+    </section>
+
+    <!-- Sessions list -->
+    <section class="sessions-section">
+      <!-- حالة لو مفيش جلسات -->
+      <div id="emptyState" class="empty-state">
+        <p>ليس لديك جلسات محجوزة حالياً</p>
+        <button class="btn primary" onclick="goBook()">احجز الآن</button>
+      </div>
+
+      <!-- لو في جلسات -->
+      <div id="sessionsList" class="cards" style="display:none;">
+        <!-- مثال بطاقة جلسة -->
+        <article class="card">
+          <div class="card-left">
+            <div class="avatar">د</div>
+          </div>
+          <div class="card-body">
+            <h3>د. فاطمة حسن</h3>
+            <p class="meta">استشارات عائلية • 7 سنوات خبرة</p>
+            <div class="price-row">
+              <span class="price">π 160</span>
+              <button class="btn secondary" onclick="viewSession()">عرض</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- يمكن تكرار البطاقات -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Bottom navigation -->
+  <nav class="bottom-nav">
+    <a href="index.html" class="nav-item">الرئيسية</a>
+    <a href="community.html" class="nav-item">المجتمع</a>
+    <a href="skills.html" class="nav-item">المهارات</a>
+    <a href="sessions.html" class="nav-item active">جلساتي</a>
+    <a href="profile.html" class="nav-item">حسابي</a>
+  </nav>
+
+<script>
+  // مثال JS بسيط: لو في جلسات نعرض اللستة بدل الرسالة الفارغة
+  const sessions = []; // لو عندك بيانات تبعتيها هنا
+  const emptyState = document.getElementById('emptyState');
+  const sessionsList = document.getElementById('sessionsList');
+
+  function updateView() {
+    if (sessions.length === 0) {
+      emptyState.style.display = 'block';
+      sessionsList.style.display = 'none';
+    } else {
+      emptyState.style.display = 'none';
+      sessionsList.style.display = 'block';
+      // هنا ممكن ندرج البطاقات ديناميكياً
+    }
+  }
+
+  function goBook(){
+    window.location.href = 'booking.html'; // لو عندك صفحة حجز
+  }
+
+  function viewSession(){
+    alert('هتوديك لتفاصيل الجلسة');
+  }
+
+  updateView();
+</script>
+
+</body>
+</html>
