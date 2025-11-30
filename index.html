@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MindBridge — نموذج أولي</title>
+  <style>
+    :root{--green:#2E8B57;--light:#F6FBF7;--muted:#6B7280;--card:#ffffff;--accent:#dff3ea}
+    *{box-sizing:border-box;font-family: 'Cairo', sans-serif}
+    body{margin:0;background:var(--light);color:#14202b;min-height:100vh;display:flex;flex-direction:column}
+    header{background:var(--card);padding:10px 14px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #edf6f1;position:sticky;top:0;z-index:20}
+    .logo{font-weight:700;color:var(--green);font-size:18px}
+    .nav{margin-left:auto;display:flex;gap:8px;align-items:center}
+    .btn{background:var(--green);color:#fff;padding:8px 12px;border-radius:8px;border:none;font-size:14px}
+
+    main{padding:12px;flex:1}
+    .hero{background:linear-gradient(180deg,#fff 0%,#f9fcf9 100%);padding:14px;border-radius:12px;display:flex;flex-direction:column;gap:8px}
+    .hero h1{margin:0;font-size:22px}
+    .hero p{margin:0;color:var(--muted)}
+
+    .grid{display:grid;grid-template-columns:repeat(1,1fr);gap:10px;margin-top:12px}
+    .card{background:var(--card);padding:12px;border-radius:12px;box-shadow:0 3px 10px rgba(2,6,23,.04)}
+
+    .therapist{display:flex;gap:12px;align-items:center;padding:12px;border-radius:12px;background:#fff;border:1px solid #f0f6f2}
+    .avatar{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,#dff3ea,#eaf8f1);display:flex;align-items:center;justify-content:center;color:var(--green);font-weight:800;font-size:18px}
+    .t-info{flex:1}
+    .t-name{font-weight:700;font-size:16px}
+    .t-meta{color:var(--muted);font-size:13px}
+    .t-action{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+    .pill{background:#f6fbf7;padding:6px 8px;border-radius:12px;font-size:13px;color:var(--green);font-weight:700}
+
+    .bottom-nav{position:fixed;bottom:8px;left:50%;transform:translateX(-50%);width:94%;max-width:720px;background:transparent;display:flex;justify-content:space-around;align-items:center;padding:6px 10px;z-index:30}
+    .nav-btn{background:#fff;padding:8px 12px;border-radius:12px;flex:1;text-align:center;border:1px solid #eef6f2}
+
+    footer{height:70px} /* to avoid overlap */
+
+    /* pages */
+    .hidden{display:none}
+
+    /* chat */
+    .chat-box{height:300px;overflow:auto;padding:10px;display:flex;flex-direction:column;gap:8px}
+    .msg{max-width:78%;padding:8px;border-radius:10px}
+    .msg.me{align-self:flex-start;background:#e6f6ee}
+    .msg.bot{align-self:flex-end;background:#f1f5f9}
+
+    .wallet{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+    .token{background:#eaf8f1;padding:10px;border-radius:8px}
+
+    /* responsive */
+    @media(min-width:900px){
+      main{max-width:1000px;margin:0 auto}
+      .grid{grid-template-columns:repeat(2,1fr)}
+      .therapist{padding:18px}
+      .avatar{width:64px;height:64px}
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">MindBridge</div>
+    <div class="nav">
+      <div style="color:var(--muted);font-size:13px;margin-left:6px">نسخة العرض</div>
+      <button class="btn" onclick="go('login')">تسجيل</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Home -->
+    <section id="home">
+      <div class="hero card">
+        <h1>رحلتك نحو صحة نفسية أفضل تبدأ هنا</h1>
+        <p>منصة عربية ذكية: جلسات، مجتمع مجهول، نقاط ومكافآت، ودفع بالعملات.</p>
+        <div style="display:flex;gap:8px;margin-top:6px">
+          <button class="btn" onclick="go('sessions')">ابحث عن مختص</button>
+          <button style="padding:8px 12px;border-radius:8px;border:1px solid #e6f3ec;background:white" onclick="go('assistant')">المساعد الذكي</button>
+        </div>
+      </div>
+
+      <div style="margin-top:12px" class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <div style="font-weight:700">نقاطك (XP)</div>
+            <div style="color:var(--muted)">اكسب بتفاعلك مع المنصة</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-weight:800;font-size:20px;color:var(--green)" id="xpHeader">120 XP</div>
+            <div style="color:var(--muted);font-size:12px">محفظتك: <span id="usdtHeader">0.015 USDT</span></div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Sessions / therapists -->
+    <section id="sessions" class="hidden">
+      <div class="card">
+        <h3>جلساتي — احجز مع مختص موثوق</h3>
+        <p style="color:var(--muted);margin-top:6px">اختر التخصص وراجع البروفايل قبل الحجز</p>
+      </div>
+
+      <div class="grid">
+        <div class="therapist card">
+          <div class="avatar">د</div>
+          <div class="t-info">
+            <div class="t-name">د. سارة أحمد <span style="background:#f1f8f5;padding:4px 8px;border-radius:12px;font-size:12px;color:#2b6b45;margin-right:8px">موثّق</span></div>
+            <div class="t-meta">علاج القلق والاكتئاب • 8 سنوات خبرة</div>
+            <div style="margin-top:8px;color:var(--muted);font-size:13px">تقييم: ★ 4.9 (127)</div>
+          </div>
+          <div class="t-action">
+            <div class="pill">π 150</div>
+            <button class="btn" onclick="openBooking('د. سارة أحمد',150)">احجز الآن</button>
+          </div>
+        </div>
+
+        <div class="therapist card">
+          <div class="avatar">م</div>
+          <div class="t-info">
+            <div class="t-name">د. محمد علي <span style="background:#f1f8f5;padding:4px 8px;border-radius:12px;font-size:12px;color:#2b6b45;margin-right:8px">موثّق</span></div>
+            <div class="t-meta">علاج الإدمان • 10 سنوات خبرة</div>
+            <div style="margin-top:8px;color:var(--muted);font-size:13px">تقييم: ★ 4.8 (95)</div>
+          </div>
+          <div class="t-action">
+            <div class="pill">π 180</div>
+            <button class="btn" onclick="openBooking('د. محمد علي',180)">احجز الآن</button>
+          </div>
+        </div>
+
+        <div class="therapist card">
+          <div class="avatar">ف</div>
+          <div class="t-info">
+            <div class="t-name">د. فاطمة حسن <span style="background:#f1f8f5;padding:4px 8px;border-radius:12px;font-size:12px;color:#2b6b45;margin-right:8px">موثّق</span></div>
+            <div class="t-meta">استشارات عائلية • 7 سنوات خبرة</div>
+            <div style="margin-top:8px;color:var(--muted);font-size:13px">تقييم: ★ 4.9 (143)</div>
+          </div>
+          <div class="t-action">
+            <div class="pill">π 160</div>
+            <button class="btn" onclick="openBooking('د. فاطمة حسن',160)">احجز الآن</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Assistant -->
+    <section id="assistant" class="hidden">
+      <div class="card">
+        <h3>المساعد الذكي</h3>
+        <div class="chat-box" id="chatbox">
+          <div class="msg bot">مرحبًا، أنا مساعدك الذكي على MindBridge. كيف أقدر أساعدك اليوم؟</div>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <input id="chatInput" placeholder="اكتب رسالتك..." style="flex:1;padding:10px;border-radius:10px;border:1px solid #eef6f2" />
+          <button class="btn" onclick="sendMsg()">إرسال</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills / challenges -->
+    <section id="skills" class="hidden">
+      <div class="card">
+        <h3>تنمية المهارات</h3>
+        <div style="margin-top:8px" class="card">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <div style="font-weight:700">تقدمي</div>
+              <div style="color:var(--muted);font-size:13px">أكملت 3 من 7 تمارين هذا الأسبوع</div>
+            </div>
+            <div style="font-size:22px;font-weight:800;color:var(--green)">45 نقطة</div>
+          </div>
+        </div>
+
+        <div style="margin-top:10px" class="card">
+          <div style="font-weight:700">التحديات اليومية</div>
+          <div style="margin-top:8px">
+            <div style="padding:12px;border-radius:12px;border:1px solid #eef6f2;margin-bottom:8px;background:#fff">التنفس العميق — 5 دقائق <div style="color:var(--muted);font-size:13px">+10 نقطة</div></div>
+            <div style="padding:12px;border-radius:12px;border:1px solid #eef6f2;margin-bottom:8px;background:#fff">كتابة الامتنان — 10 دقائق <div style="color:var(--muted);font-size:13px">+15 نقطة</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Wallet / Payments -->
+    <section id="wallet" class="hidden">
+      <div class="card">
+        <h3>المحفظة</h3>
+        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:8px">
+          <div class="token">رصيد USDT: <strong id="walletUSDT">0.015</strong></div>
+          <div class="token">نقاط XP: <strong id="walletXP">120</strong></div>
+        </div>
+        <div style="margin-top:12px;display:flex;gap:8px">
+          <button class="btn" onclick="convertXP()">حوّل نقاط لعملة</button>
+          <button style="padding:8px;border-radius:8px;border:1px solid #e6f3ec;background:white" onclick="go('home')">عودة</button>
+        </div>
+        <div style="margin-top:12px;color:var(--muted);font-size:13px">دعم الدفع بعملات رقمية ومحافظ — (محاكاة) في هذا النموذج.</div>
+      </div>
+    </section>
+
+    <!-- Booking modal (hidden section used as modal) -->
+    <section id="bookingModal" class="hidden card" style="position:fixed;left:50%;transform:translateX(-50%);top:12%;width:92%;max-width:420px;z-index:60">
+      <h4 id="bookTitle">حجز جلسة</h4>
+      <div style="margin-top:8px;color:var(--muted)" id="bookInfo">تفاصيل الحجز...</div>
+      <div style="margin-top:12px">
+        <label>اختر التاريخ</label>
+        <input id="bookDate" type="date" style="width:100%;padding:10px;border-radius:8px;border:1px solid #eef6f2;margin-top:6px" />
+      </div>
+      <div style="margin-top:12px;display:flex;gap:8px">
+        <select id="paySelect" style="flex:1;padding:10px;border-radius:8px;border:1px solid #eef6f2">
+          <option value="card">بطاقة (فيات)</option>
+          <option value="usdt">USDT (محفظة)</option>
+        </select>
+        <button class="btn" onclick="confirmBooking()">دفع & تأكيد</button>
+      </div>
+      <div style="margin-top:8px;text-align:center"><button style="background:#fff;border:1px solid #e6f3ec;padding:8px;border-radius:10px" onclick="closeBooking()">إلغاء</button></div>
+    </section>
+
+  </main>
+
+  <div class="bottom-nav">
+    <div class="nav-btn" onclick="go('home')">الرئيسية</div>
+    <div class="nav-btn" onclick="go('community')">المجتمع</div>
+    <div class="nav-btn" onclick="go('skills')">المهارات</div>
+    <div class="nav-btn" onclick="go('assistant')">المساعد</div>
+    <div class="nav-btn" onclick="go('sessions')">جلساتي</div>
+  </div>
+
+  <footer></footer>
+
+  <script>
+    // State
+    let xp = 120;
+    let usdt = 0.015;
+    const xpToUSDTRate = 0.00015; // prototype conversion rate
+
+    function go(id){
+      // hide all main sections
+      document.querySelectorAll('main section').forEach(s=>s.classList.add('hidden'));
+      // hide modal style booking if visible
+      document.getElementById('bookingModal').classList.add('hidden');
+      // show requested section
+      const el = document.getElementById(id);
+      if(el) el.classList.remove('hidden');
+      updateHeaders();
+      window.scrollTo(0,0);
+    }
+
+    function updateHeaders(){
+      document.getElementById('xpHeader').textContent = xp + ' XP';
+      document.getElementById('walletXP') && (document.getElementById('walletXP').textContent = xp);
+      document.getElementById('walletUSDT') && (document.getElementById('walletUSDT').textContent = usdt.toFixed(3));
+      document.getElementById('usdtHeader') && (document.getElementById('usdtHeader').textContent = usdt.toFixed(3) + ' USDT');
+    }
+
+    function openBooking(name,price){
+      document.getElementById('bookTitle').textContent = 'حجز: ' + name;
+      document.getElementById('bookInfo').textContent = 'التكلفة: ' + price + ' π (نموذج عرض)';
+      document.getElementById('bookingModal').classList.remove('hidden');
+      window.scrollTo(0,0);
+      // attach price to modal for confirm
+      document.getElementById('bookingModal').dataset.price = price;
+      document.getElementById('bookDate').value = '';
+    }
+
+    function closeBooking(){ document.getElementById('bookingModal').classList.add('hidden'); }
+
+    function confirmBooking(){
+      const date = document.getElementById('bookDate').value;
+      const price = Number(document.getElementById('bookingModal').dataset.price || 0);
+      const payMethod = document.getElementById('paySelect').value;
+      if(!date){ alert('الرجاء اختيار تاريخ الحجز'); return; }
+      // simulate payment & reward XP
+      if(payMethod === 'usdt'){
+        // deduct small simulated amount from usdt (prototype)
+        const costUsdt = price * 0.001; // fake conversion
+        usdt = Math.max(0, usdt - costUsdt);
+      }
+      xp += 10; // reward for booking
+      updateHeaders();
+      alert('تم تأكيد الحجز في ' + date + '. شكراً! ربحْتَ 10 XP.');
+      closeBooking();
+      go('sessions');
+    }
+
+    // Chat simulation
+    function sendMsg(){
+      const v=document.getElementById('chatInput').value.trim() || 'أريد تمرين تنفس';
+      const node=document.createElement('div');node.className='msg me';node.textContent=v;document.getElementById('chatbox').appendChild(node);
+      document.getElementById('chatInput').value='';
+      setTimeout(()=>{
+        const b=document.createElement('div');b.className='msg bot';b.textContent='اقتراح: جرّبي تمرين تنفس 4-4-4 لبضع دقائق الآن.';document.getElementById('chatbox').appendChild(b);
+        document.getElementById('chatbox').scrollTop = document.getElementById('chatbox').scrollHeight;
+      },800);
+    }
+
+    // publish to community (simple reward)
+    function publishToFeed(text,anon=true){
+      const feed = document.getElementById('homeFeed');
+      if(!text) return;
+      const card = document.createElement('div');
+      card.className='card';
+      card.style.marginTop='8px';
+      card.textContent = (anon ? 'مجهول: ' : 'باسمك: ') + text;
+      document.querySelector('#home') && document.querySelector('#home').appendChild(card);
+      if(anon){ xp += 5; updateHeaders(); alert('نشرت كمجهول وربحت 5 XP'); }
+    }
+
+    // convert XP to USDT (prototype)
+    function convertXP(){
+      if(xp < 50){ alert('عشان تحول النقاط لازم يكون عندك 50 نقطة على الأقل'); return; }
+      const convert = Math.min(100, xp);
+      const gained = convert * xpToUSDTRate;
+      xp -= convert;
+      usdt += gained;
+      updateHeaders();
+      alert('تم تحويل ' + convert + ' XP إلى ' + gained.toFixed(4) + ' USDT (نموذج)');
+    }
+
+    // init
+    updateHeaders();
+    go('home');
+  </script>
+</body>
+</html>
