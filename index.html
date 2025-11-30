@@ -8,74 +8,65 @@
 </head>
 <body>
   <header class="site-header">
-    <div class="header-left">
-      <button class="icon-btn" aria-label="notifications">🔔</button>
-    </div>
-    <!-- language selector -->
-<div class="lang-menu">
-  <button class="lang-btn">🌐 اللغة ▾</button>
-  <ul class="lang-list">
-    <li data-lang="ar">العربية</li>
-    <li data-lang="en">English</li>
-    <li data-lang="fr">Français</li>
-  </ul>
-</div>
-<!-- end language selector -->
-
-    <div class="brand">MindBridge</div>
-    <div class="header-right">
-      <div class="avatar">MB</div>
-      <button class="menu-btn" aria-label="menu">≡</button>
+    <div class="container header-inner">
+      <div class="left-icons">
+        <button class="icon-btn" aria-label="notifications">🔔</button>
+        <button class="icon-btn" aria-label="translate">🌐</button>
+      </div>
+      <div class="brand">MindBridge <span class="logo-badge">MB</span></div>
+      <div class="menu-icon">☰</div>
     </div>
   </header>
 
   <main>
     <section class="hero">
-      <div class="hero-badge">منصة متكاملة لدعم صحتك النفسية ونموك الشخصي</div>
-      <h1>رحلتك نحو صحة نفسية أفضل تبدأ هنا</h1>
-      <p class="hero-sub">منصة عربية ذكية للدعم النفسي وتنمية المهارات الشخصية</p>
+      <div class="container hero-inner">
+        <div class="pill">منصة متكاملة لدعم صحتك النفسية ونموّك الشخصي</div>
+        <h1 class="hero-title">رحلتك نحو صحة نفسية أفضل تبدأ هنا</h1>
+        <p class="hero-sub">منصة عربية ذكية للدعم النفسي وتنمية المهارات الشخصية</p>
 
-      <div class="hero-cta">
-        <a class="btn primary" href="#">ابدأ الآن</a>
-        <a class="btn ghost" href="#">تعرف على الأخصائيين</a>
+        <div class="hero-ctas">
+          <a class="btn primary" href="#">ابدأ الآن</a>
+          <a class="btn secondary" href="#">تعرف على الأخصائيين</a>
+        </div>
       </div>
     </section>
 
     <section class="features">
-      <h2 class="section-title">ما يميز MindBridge</h2>
+      <div class="container">
+        <h2 class="section-title">ما يميز MindBridge</h2>
+        <p class="section-sub">منصة متكاملة لدعم صحتك النفسية ونموّك الشخصي</p>
 
-      <div class="cards">
-        <article class="card">
-          <div class="card-icon">📅</div>
-          <h3>جلسات مع أخصائيين</h3>
-          <p>حجوزات سريعة وسهلة مع أخصائيين مختصين.</p>
-        </article>
+        <div class="cards">
+          <div class="card">
+            <div class="card-icon">📅</div>
+            <h3>جلسات مع أخصائيين</h3>
+            <p>حجوزات مباشرة وسهلة مع محترفين.</p>
+          </div>
 
-        <article class="card">
-          <div class="card-icon">🧠</div>
-          <h3>المساعد الذكي</h3>
-          <p>محادثات ذكية تساعدك على تنظيم مشاعرك.</p>
-        </article>
+          <div class="card">
+            <div class="card-icon">🤖</div>
+            <h3>المساعد الذكي</h3>
+            <p>دعم فوري ومقترحات مخصصة.</p>
+          </div>
 
-        <article class="card">
-          <div class="card-icon">📈</div>
-          <h3>المهارات</h3>
-          <p>دورات قصيرة لتنمية مهاراتك الشخصية.</p>
-        </article>
+          <div class="card">
+            <div class="card-icon">🧭</div>
+            <h3>المجتمع</h3>
+            <p>مجتمع داعم لمشاركة الخبرات.</p>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
-  <nav class="bottom-nav" role="navigation" aria-label="Bottom navigation">
-    <a class="nav-item active" href="#"><span>الرئيسية</span></a>
-    <a class="nav-item" href="#"><span>جلساتي</span></a>
-    <a class="nav-item" href="#"><span>المساعد</span></a>
-    <a class="nav-item" href="#"><span>المجتمع</span></a>
-    <a class="nav-item" href="#"><span>حسابي</span></a>
+  <nav class="bottom-nav">
+    <a class="nav-item" href="#">الرئيسية</a>
+    <a class="nav-item" href="#">جلساتي</a>
+    <a class="nav-item" href="#">المساعد</a>
+    <a class="nav-item" href="#">المهارات</a>
+    <a class="nav-item" href="#">حسابي</a>
   </nav>
 
-  <footer class="site-footer">
-    <p>© 2025 MindBridge</p>
-  </footer>
 </body>
 </html>
