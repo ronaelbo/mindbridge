@@ -1,1 +1,104 @@
+<!-- experts.html -->
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>الأخصائيين — MindBridge</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* قواعد بسيطة مكملة لستايلك عشان العرض يكون مرتب */
+    .experts-container{max-width:980px;margin:24px auto;padding:0 16px;}
+    .grid{display:grid;grid-template-columns:repeat(1,1fr);gap:12px;}
+    @media(min-width:720px){ .grid{grid-template-columns:repeat(2,1fr);} }
+    .card{background:#fff;border-radius:12px;padding:16px;box-shadow:0 6px 18px rgba(0,0,0,0.06);display:flex;gap:12px;align-items:center}
+    .avatar{width:68px;height:68px;border-radius:50%;background:#e9f3ea;display:flex;align-items:center;justify-content:center;font-weight:bold;color:#2a7a3a}
+    .info{flex:1}
+    .name{font-size:18px;font-weight:700;margin-bottom:4px}
+    .role{color:#666;margin-bottom:6px}
+    .meta{display:flex;gap:10px;align-items:center;color:#444;font-size:14px}
+    .badge{background:#f0f7f3;color:#167a3c;padding:4px 8px;border-radius:999px;font-weight:600}
+    .book{background:#1d8f55;color:#fff;padding:10px 14px;border-radius:10px;border:none;cursor:pointer}
+    .rating{display:flex;gap:6px;align-items:center}
+    .price{color:#1d8f55;font-weight:700}
+    .topline{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+    .search{padding:8px;border-radius:10px;border:1px solid #e6e6e6;width:60%}
+  </style>
+</head>
+<body>
+  <header>MindBridge</header>
 
+  <main class="experts-container">
+    <div class="topline">
+      <h2>تعرف على الأخصائيين</h2>
+      <input class="search" placeholder="ابحث باسم أو تخصص (مثال: قلق، اكتئاب)" id="search"/>
+    </div>
+
+    <section class="grid" id="list">
+      <!-- بطاقة مثال، ستكرر -->
+      <article class="card" data-name="د. سارة أحمد" data-role="علاج القلق والاكتئاب" data-tags="قلق اكتئاب">
+        <div class="avatar">سأ</div>
+        <div class="info">
+          <div class="name">د. سارة أحمد <span class="badge">موثق</span></div>
+          <div class="role">علاج القلق والاكتئاب — 8 سنوات خبرة</div>
+          <div class="meta">
+            <div class="rating">⭐ 4.9 <span style="color:#999">(127)</span></div>
+            <div class="price">π 150</div>
+          </div>
+        </div>
+        <div>
+          <button class="book" onclick="location.href='booking.html?expert=sara'">احجز الآن</button>
+        </div>
+      </article>
+
+      <article class="card" data-name="د. محمد علي" data-role="علاج الإدمان" data-tags="ادمان علاج">
+        <div class="avatar">مع</div>
+        <div class="info">
+          <div class="name">د. محمد علي <span class="badge">موثق</span></div>
+          <div class="role">علاج الإدمان — 10 سنوات خبرة</div>
+          <div class="meta">
+            <div class="rating">⭐ 4.8 <span style="color:#999">(95)</span></div>
+            <div class="price">π 180</div>
+          </div>
+        </div>
+        <div>
+          <button class="book" onclick="location.href='booking.html?expert=mohamed'">احجز الآن</button>
+        </div>
+      </article>
+
+      <article class="card" data-name="د. فاطمة حسن" data-role="استشارات عائلية" data-tags="اسرة علاقات">
+        <div class="avatar">فح</div>
+        <div class="info">
+          <div class="name">د. فاطمة حسن <span class="badge">موثق</span></div>
+          <div class="role">استشارات عائلية — 7 سنوات خبرة</div>
+          <div class="meta">
+            <div class="rating">⭐ 4.9 <span style="color:#999">(143)</span></div>
+            <div class="price">π 160</div>
+          </div>
+        </div>
+        <div>
+          <button class="book" onclick="location.href='booking.html?expert=fatma'">احجز الآن</button>
+        </div>
+      </article>
+
+      <!-- ممكن تضيفي هنا بطاقات أكثر بنفس الصيغة -->
+    </section>
+  </main>
+
+  <script>
+    // فلتر بسيط للبحث فالبطاقات (موبايل يعمل بسرعة)
+    const search = document.getElementById('search');
+    const list = document.getElementById('list');
+    search.addEventListener('input', e=>{
+      const q = e.target.value.trim().toLowerCase();
+      Array.from(list.children).forEach(card=>{
+        const name = card.dataset.name.toLowerCase();
+        const tags = card.dataset.tags.toLowerCase();
+        const role = card.dataset.role.toLowerCase();
+        if(!q || name.includes(q) || tags.includes(q) || role.includes(q)) card.style.display = '';
+        else card.style.display = 'none';
+      });
+    });
+  </script>
+</body>
+</html>
