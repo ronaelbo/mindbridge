@@ -1,101 +1,70 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>MindBridge</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="topbar">
+  <header class="site-header">
     <div class="top-left">
-      <button class="icon-btn" id="langBtn" aria-label="تغيير اللغة">🌐</button>
+      <button id="langBtn" class="lang-btn">ع</button>
     </div>
-    <div class="brand">MindBridge <span class="avatar">MB</span></div>
-    <div class="top-right">
-      <button class="icon-btn" aria-label="القائمة">☰</button>
+    <div class="brand">
+      <span class="logo">MindBridge</span>
+      <div class="avatar">MB</div>
+      <button id="menuToggle" class="menu-btn">≡</button>
     </div>
   </header>
 
   <main class="container">
-    <section class="promo">
-      <div class="pill">منصة متكاملة لدعم صحتك النفسية ونموّك الشخصي</div>
-      <h1>رحلتك نحو صحة نفسية أفضل تبدأ هنا</h1>
-      <p class="sub">منصة عربية ذكية لدعمك النفسي وتنمية المهارات الشخصية</p>
+    <div class="badge" id="badgeText">منصة متكاملة لدعم صحتك النفسية ونموك الشخصي</div>
 
-      <div class="cta">
-        <a class="btn primary" href="#">ابدأ الآن</a>
-        <a class="btn ghost" href="#">تعرف على الأخصائيين</a>
+    <section class="hero">
+      <h1 id="heroTitle">رحلتك نحو صحة نفسية أفضل تبدأ هنا</h1>
+      <p id="heroSubtitle">منصة عربية ذكية للدعم النفسي وتنمية المهارات الشخصية</p>
+
+      <div class="hero-actions">
+        <button id="primaryBtn" class="btn btn-primary">ابدأ الآن</button>
+        <button id="secondaryBtn" class="btn btn-secondary">تعرف على الأخصائيين</button>
       </div>
     </section>
 
     <section class="features">
-      <h2 class="section-title">ما يميّز MindBridge</h2>
+      <h2 id="featuresTitle">ما يميز MindBridge</h2>
+      <p class="muted">منصة متكاملة لدعم صحتك النفسية ونموك الشخصي</p>
 
-      <div class="cards-row">
-        <article class="card">
+      <div class="cards">
+        <div class="card">
           <div class="card-icon">📅</div>
-          <h3>جلسات مع أخصائيين</h3>
-          <p class="muted">حجز جلسة فردية بسهولة</p>
-        </article>
-
-        <article class="card">
-          <div class="card-icon">🤖</div>
-          <h3>المساعد الذكي</h3>
-          <p class="muted">دعم فوري وإرشاد بسيط</p>
-        </article>
-
-        <article class="card">
-          <div class="card-icon">🧭</div>
-          <h3>المجتمع</h3>
-          <p class="muted">مجموعات ودعم من المستخدمين</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="experts">
-      <h2 class="section-title">أخصائيون مميزون</h2>
-
-      <div class="expert-list">
-        <div class="expert-card">
-          <div class="expert-left">
-            <div class="expert-name">د. فاطمة حسن</div>
-            <div class="expert-role muted">استشارات عائلية • 7 سنوات</div>
-          </div>
-          <div class="expert-right">
-            <div class="price">π 160</div>
-            <a class="btn small" href="#">احجز الآن</a>
-          </div>
+          <h3 id="card1Title">جلسات مع أخصائيين</h3>
+          <p id="card1Text">حجز جلسات فردية مع أخصائيين مرخصين</p>
         </div>
 
-        <div class="expert-card">
-          <div class="expert-left">
-            <div class="expert-name">د. خالد يوسف</div>
-            <div class="expert-role muted">علاج الصدمات • 12 سنة</div>
-          </div>
-          <div class="expert-right">
-            <div class="price">π 170</div>
-            <a class="btn small" href="#">احجز الآن</a>
-          </div>
+        <div class="card">
+          <div class="card-icon">💬</div>
+          <h3 id="card2Title">المساعد الذكي</h3>
+          <p id="card2Text">استفسر عن المشاكل واحصل على نصائح أولية</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">👥</div>
+          <h3 id="card3Title">المجتمع</h3>
+          <p id="card3Text">انضم لمجتمع يدعمك ويشاركك الخبرات</p>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- bottom navigation -->
-  <nav class="bottom-nav" role="navigation" aria-label="تصفح">
-    <a class="nav-item" href="#">الرئيسية</a>
-    <a class="nav-item" href="#">جلساتي</a>
-    <a class="nav-item" href="#">المساعد</a>
-    <a class="nav-item" href="#">المهارات</a>
-    <a class="nav-item" href="#">حسابي</a>
+  <nav class="bottom-nav">
+    <a href="#" class="nav-item active" id="navHome">الرئيسية</a>
+    <a href="#" class="nav-item" id="navSessions">جلساتي</a>
+    <a href="#" class="nav-item" id="navHelp">المساعد</a>
+    <a href="#" class="nav-item" id="navSkills">المهارات</a>
+    <a href="#" class="nav-item" id="navAccount">حسابي</a>
   </nav>
 
-  <script>
-    // زر تغيير اللغة بسيط (مجرّد مثال)
-    document.getElementById('langBtn').addEventListener('click', () => {
-      alert('اضغطي على اللغة اللي عايزاها - مثال: عربي / English / Français');
-    });
-  </script>
+  <script src="lang.js"></script>
 </body>
 </html>
